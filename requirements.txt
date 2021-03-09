@@ -1,5 +1,7 @@
 Django>=3.0,<4.0
 django-rest-framework
 Pillow
-bs4
+scrapy
+requests
+lxml
 psycopg2-binary>=2.8
