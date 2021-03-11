@@ -3,3 +3,5 @@ psycopg2
 djangorestframework
 markdown
 django-filter
+scrapy
+scrapy-djangoitem

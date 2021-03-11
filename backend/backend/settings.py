@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'scraper.apps.ScraperConfig',
+    'trip_reports.apps.TripReportsConfig',
 ]
 
 MIDDLEWARE = [
