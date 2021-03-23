@@ -3,6 +3,8 @@ import * as PropTypes from 'prop-types'
 import Button from './Button'
 import SearchBar from './SearchBar'
 
+import Typography from '@material-ui/core/Typography';
+
 const Header = ({title}) => {
 
     const [input, setInput] = useState('');
@@ -12,8 +14,7 @@ const Header = ({title}) => {
     }
     return (
         <header className='header'>
-            <h1>{title}</h1>
-            <SearchBar input={input} onChange={updateInput}></SearchBar>
+            <Typography variant="h3" gutterBottom>{title}</Typography>
         </header>
     )
 }

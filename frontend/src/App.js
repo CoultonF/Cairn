@@ -1,32 +1,50 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header'
 import Hikes from './components/Hikes'
+import SearchBar from './components/SearchBar'
+import Container from '@material-ui/core/Container';
+
 function App() {
-    const [hikes, setHikes] = useState([
-        {
-            id: 1,
-            text: 'South Lawson',
-            date: ' Feb 5th 2019'
-    
-        },
-        {
-            id: 2,
-            text: 'Mount Sarrail',
-            date: ' May 5th 2019'
-    
-        },
-        {
-            id: 3,
-            text: 'Mount Temple',
-            date: ' Sep 5th 2015'
-    
-        },
-    ])
+    const [hikes, setHikes] = useState([])
+
+    const getHikes=(arg)=>{
+      fetch('/api/trip_reports?search=' + arg
+      ,{
+        headers : { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+         }
+      }
+      )
+        .then(function(response){
+          return response.json();
+        })
+        .then(function(myJson) {
+          setHikes(myJson)
+        });
+    }
+  
+
+    const [input, setInput] = useState('');
+  
+    const updateInput = async (input) => {
+       setInput(input);
+    }
+
+    const updateHikes = async (e) => {
+      e.preventDefault();
+      getHikes(input);
+      console.log(input);
+   }
+
   return (
-    <div className="container">
-      <Header title='Cairn' />
+    <Container maxWidth="sm">
+      <Header></Header>
+      <SearchBar input={input} onChange={updateInput} submit={updateHikes} ></SearchBar>
+      <br></br>
       <Hikes hikes={hikes}></Hikes>
-    </div>
+    </Container>
   );
 }
 
